@@ -29,6 +29,6 @@ module Netprog
     config.generators.system_tests = nil
 
     # use SQL instead of Ruby to store schema; result in using Posstgres db constraint (i.e. e-mail)
-    config.active_record.schema_format = :SQL
+    config.active_record.schema_format = :sql
   end
 end
