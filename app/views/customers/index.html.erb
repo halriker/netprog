@@ -29,12 +29,12 @@
 	</thead>
 <tbody>
 	<% @customers.each do |customer| %>
-	<tr>
-		<td><%= customer.first_name %></td>
-		<td><%= customer.last_name %></td>
-		<td><%= customer.email %></td>
-		<td><%= l customer.created_at.to_date %></td>
-	</tr>
+		<tr>
+			<td><%= customer.first_name %></td>
+			<td><%= customer.last_name %></td>
+			<td><%= customer.email %></td>
+			<td><%= l customer.created_at.to_date %></td>
+		</tr>
 	<% end %>
 </tbody>
 </table>
