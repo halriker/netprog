@@ -2,13 +2,10 @@
 	<h1>
 		Welcome! <%= current_user.email %>
 	</h1>
-	<h2>
-	Rails Version <%= Rails.version %>
-	</h2>
 </header>
 <section>
 	<p>
-		Future home
+		Devlopment Operations
 	</p>
 	<%= link_to "Log Out", destroy_user_session_path, method: :delete %>
 </section>
