@@ -255,6 +255,13 @@ CREATE UNIQUE INDEX index_customers_on_username ON customers USING btree (userna
 
 
 --
+-- Name: index_machines_on_lower_machine_name_varchar_pattern_ops; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_machines_on_lower_machine_name_varchar_pattern_ops ON machines USING btree (lower((machine_name)::text) varchar_pattern_ops);
+
+
+--
 -- Name: index_machines_on_machine_name; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -286,6 +293,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170921213633'),
 ('20170921215853'),
 ('20171006104229'),
-('20171012110837');
+('20171012110837'),
+('20171013004120');
 
 
