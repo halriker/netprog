@@ -1,8 +1,11 @@
-<HEADER>
-	<h1 Class="h2">Customer Search</h1>
-</HEADER>
+<section>
+  <shine-customer-search></shine-customer-search>
+</section>
+<%= javascript_pack_tag "customers" %>
 
-<section class="search-form">
+<!-- PRE-ANGULAR SEARCH CODE -->
+
+<!-- <section class="search-form">
 	<%= form_for :customers, method: :get do |f| %>
 		<div class="input-group input-group-lg">
 			<%= label_tag :keywords, nil, class: "sr-only" %>
@@ -39,7 +42,7 @@
 <% if @customers.present? %>
 	<%= render partial: "pager", locals: { keywords: @keywords, page: @page } %>
 <% end %>
-</section>
+</section> -->
 
 
 <!-- <section class="search-results">
