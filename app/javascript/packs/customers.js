@@ -1,17 +1,11 @@
-/***
- * Excerpted from "Rails, Angular, Postgres, and Bootstrap, Second Edition",
- * published by The Pragmatic Bookshelf.
- * Copyrights apply to this code. It may not be used to create training material,
- * courses, books, articles, and the like. Contact us if you are in doubt.
- * We make no guarantees that this code is fit for any purpose.
- * Visit http://www.pragmaticprogrammer.com/titles/dcbang2 for more book information.
-***/
+
 import "hello_angular/polyfills";
 
 import { Component, NgModule    } from "@angular/core";
 import { BrowserModule          } from "@angular/platform-browser";
 import { FormsModule            } from "@angular/forms";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
+import { Http, HttpModule } from "@angular/http";
 
 var RESULTS = [
   {
@@ -96,22 +90,30 @@ var CustomerSearchComponent = Component({
 </section> \
   '
 }).Class({
-  constructor: function() {
-    this.customers = null;
-    this.keywords  = "";
-  },
+  constructor: [
+    Http, 
+    function(http) {
+      this.customers = null;
+      this.http = http;
+      this.keywords  = "";
+    }
+  ],
   search: function() {
-    if (this.keywords == "pat") {
-      this.customers = RESULTS;
-    }
-    else {
-      this.customers = [];
-    }
+    var self = this;
+    self.http.get("/customers.json?keywords=" + self.keywords
+    ).subscribe(
+      function(response) {
+        self.customers = response.json().customers
+      },
+      function(response) {
+        window.alert(response);
+      }
+    );
   }
 });
 
 var CustomerAppModule = NgModule({
-  imports:      [ BrowserModule, FormsModule ],
+  imports:      [ BrowserModule, FormsModule, HttpModule ],
   declarations: [ CustomerSearchComponent ],
   bootstrap:    [ CustomerSearchComponent ]
 })
@@ -120,3 +122,4 @@ var CustomerAppModule = NgModule({
 });
 
 platformBrowserDynamic().bootstrapModule(CustomerAppModule);
+  
